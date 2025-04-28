@@ -54,6 +54,10 @@ const Navigation = () => {
                 <li className='appointment-btn border border-solid rounded-[10px] w-[200px] text-center bg-blue-400 text-white'>
                     <Link to="/appointment">Make an Appointment</Link>
                 </li>
+
+                <li>
+                    <Link to="/login">Log In</Link>
+                </li>
             </ul>
         </nav>
      );
