@@ -2,8 +2,8 @@
 
 
 import { Link } from 'react-router-dom';
-import image1 from '../images/1.png.webp';
-import image2 from "../images/2.png";
+import image1 from '../assets/images/1.png.webp';
+import image2 from "../assets/images/2.png";
 
 const MainSection = () => {
     return ( 

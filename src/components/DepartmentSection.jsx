@@ -1,9 +1,9 @@
-import image4 from "../images/4.png"
-import image5 from "../images/5.png"
-import image6 from "../images/6.png"
-import image7 from "../images/7.png"
-import image9 from "../images/9.png"
-import image8 from "../images/8.png"
+import image4 from "../assets/images/4.png"
+import image5 from "../assets/images/5.png"
+import image6 from "../assets/images/6.png"
+import image7 from "../assets/images/7.png"
+import image9 from "../assets/images/9.png"
+import image8 from "../assets/images/8.png"
 
 const Department = () => {
     return ( 

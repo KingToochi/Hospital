@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import image from '../images/3.jpg'
+import image from '../assets/images/3.jpg'
 const Hero_section = () => {
     return (  
         <section className='hero block '>
