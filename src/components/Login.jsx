@@ -1,4 +1,5 @@
 import logo from '../assets/images/logo.jpg'
+import {Link} from "react-router-dom"
 
 const Login = () => {
     return (
@@ -16,7 +17,11 @@ const Login = () => {
                     <i className="fa fa-lock"></i>
                     <input className='w-[97.5%] border-0 focus:outline-none' type="password" name="password" placeholder="password"/>
                 </label>
-                <button className='border rounded-[50px] w-[20%] m-auto bg-white pointer' type='submit'>Login</button>
+                <button className='border rounded-[10px] w-[20%] m-auto bg-white cursor-pointer' type='submit'>Login</button>
+                <label className='flex ml-[50px]'>
+                    <input type="checkbox" checked="checked" name="remember" /> Remember me
+                    <span class="ml-[250px]">Forgot <Link href="#">password?</Link></span>
+                </label>
             </form>
         </div>
      );
