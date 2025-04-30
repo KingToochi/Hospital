@@ -8,7 +8,9 @@ import NewBlog from './components/NewBlog';
 import SingleBlog from './components/SingleBlog';
 import Doctors from './components/Doctors';
 import Contact from './components/Contact';
-import Login from './components/Login';
+import Login from './components/auth/Login';
+import AdminLayout from './components/admin/AdminLayout';
+import Overview from './components/admin/Overview';
 
 function App() {
   
@@ -25,6 +27,10 @@ function App() {
           <Route path='department' element={<DepartmentSection />} />
           <Route path='contact' element={<Contact />}/>
           <Route path='login' element={<Login />}/>
+        </Route>
+
+        <Route path='/admin' element={<AdminLayout/>}>
+          <Route index element={<Overview/>} />
         </Route>
       </Routes>
     </div>

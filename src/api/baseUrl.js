@@ -1,0 +1,1 @@
+export const baseUrl = "https://hospitalmanagement-q85c.onrender.com/";
