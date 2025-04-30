@@ -8,6 +8,7 @@ import NewBlog from './components/NewBlog';
 import SingleBlog from './components/SingleBlog';
 import Doctors from './components/Doctors';
 import Contact from './components/Contact';
+import Login from './components/Login';
 
 function App() {
   
@@ -23,6 +24,7 @@ function App() {
           <Route path='doctors' element={<Doctors />}/>
           <Route path='department' element={<DepartmentSection />} />
           <Route path='contact' element={<Contact />}/>
+          <Route path='login' element={<Login />}/>
         </Route>
       </Routes>
     </div>
