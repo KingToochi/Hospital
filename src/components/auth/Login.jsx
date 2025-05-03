@@ -45,8 +45,8 @@ const Login = () => {
                 }
             }, 2000);
             
-        }catch (err) {
-            switch (err.status) {
+        }catch (error) {
+            switch (error.status) {
                 case 401:
                     toast.error("Invalid credentials")
                     break;
