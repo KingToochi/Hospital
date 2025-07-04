@@ -1,4 +1,4 @@
-import { LineChart, Line, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 const Appointment = () => {
     const doctorAppointment = [
@@ -13,17 +13,17 @@ const Appointment = () => {
     }, 0);
 
     return ( 
-        <div className="container">
+        <div className="container w-full border-[1px] border-solid border-[#d3d3d3] p-4">
+            <h2>Total Appointments: {totalAppointments}</h2>
 
-            <LineChart width={600} height={300} data={doctorAppointment}>
-                {/* Optional: remove grid too if you want an even cleaner look */}
-                {/* <CartesianGrid strokeDasharray="3 3" /> */}
-
-                {/* Axes removed */}
+            <BarChart width={1000} height={300} data={doctorAppointment}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="date" />
+                <YAxis />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="No" stroke="#82ca9d" strokeWidth={2} dot={{ r: 4 }} />
-            </LineChart>
+                <Bar dataKey="No" fill="#82ca9d" />
+            </BarChart>
         </div>
     );
 };

@@ -1,4 +1,4 @@
-import { LineChart, Line, Tooltip, Legend } from 'recharts';
+import { LineChart, Line, Tooltip} from 'recharts';
 
 // ✅ Export the data
 export const patientData = [
@@ -15,7 +15,6 @@ const Data = () => {
         <div className="container">
             <LineChart width={100} height={50} data={patientData}>
                 <Tooltip />
-                <Legend />
                 <Line
                     type="monotone"
                     dataKey="patients"
