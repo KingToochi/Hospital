@@ -1,5 +1,6 @@
 import logo from "../../assets/images/logo.jpg";
 import image from "../../assets/images/chiefDoc.jpg"
+import { Link } from "react-router-dom";
 
 const SideBar = () => {
   return (
@@ -14,11 +15,26 @@ const SideBar = () => {
         <h2>Department Head</h2>
       </div>
       <ul className="flex flex-col w-[80%] h-[200px] justify-around items-center ">
-        <li className="w-[50%] flex flex-row gap-[1rem] items-center"> <i className="fa fa-user"></i>Admin</li>
-        <li className="w-[50%] flex flex-row gap-[1rem] items-center"><i className="fa fa-home"></i>Dashboard</li>
-        <li className="w-[50%] flex flex-row  gap-[1rem] items-center" ><i className="fa fa-home"></i>Clinic</li>
-        <li className="w-[50%] flex flex-row  gap-[1rem] items-center" ><i className="fa fa-home"></i>Appointment</li>
-        <li className="w-[50%] flex flex-row  gap-[1rem] items-center" ><i className="fa fa-home"></i>Patients</li>
+        <li className="w-[50%] flex flex-row gap-[1rem] items-center"> 
+          <Link to="/doctors">
+            <i className="fa fa-user">Doctors</i>
+          </Link></li>
+        <li className="w-[50%] flex flex-row gap-[1rem] items-center">
+          <Link >
+            <i className="fa fa-home">Dashboard</i>
+          </Link></li>
+        <li className="w-[50%] flex flex-row  gap-[1rem] items-center" >
+          <Link>
+            <i className="fa fa-home">Clinic</i>
+          </Link></li>
+        <li className="w-[50%] flex flex-row  gap-[1rem] items-center" >
+          <Link >
+          <i className="fa fa-home">Appointment</i>
+        </Link></li>
+        <li className="w-[50%] flex flex-row  gap-[1rem] items-center" >
+          <Link>
+            <i  className="fa fa-home">Patients</i>
+          </Link></li>
       </ul>
     </div>
   );

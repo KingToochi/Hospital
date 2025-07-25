@@ -6,7 +6,6 @@ import About from "./components/About";
 import DepartmentSection from "./components/DepartmentSection";
 import NewBlog from "./components/NewBlog";
 import SingleBlog from "./components/SingleBlog";
-import Doctors from "./components/Doctors";
 import Contact from "./components/Contact";
 import Login from "./components/auth/Login";
 import AdminLayout from "./components/admin/AdminLayout";
@@ -14,6 +13,8 @@ import Overview from "./components/admin/Overview";
 import Page404 from "./components/auth/404";
 import Unauthorized from "./components/Unathourized";
 import RequiredAuth from "./components/auth/RequiredAuth";
+import Doctors from "./components/admin/Doctor";
+
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route element={<RequiredAuth allowedRole={"Admin"} />}>
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<Overview />} />
+            <Route path="doctors" element={<Doctors/>} />
           </Route>
         </Route>
         
