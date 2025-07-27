@@ -16,25 +16,21 @@ const SideBar = () => {
       </div>
       <ul className="flex flex-col w-[80%] h-[200px] justify-around items-center ">
         <li className="w-[50%] flex flex-row gap-[1rem] items-center"> 
-          <Link to="/doctors">
-            <i className="fa fa-user">Doctors</i>
-          </Link></li>
+          <Link to="/admin">
+            <i className="fa fa-user">Overview</i>
+          </Link ></li>
         <li className="w-[50%] flex flex-row gap-[1rem] items-center">
-          <Link >
-            <i className="fa fa-home">Dashboard</i>
+          <Link to="doctors">
+            <i className="fa fa-home">Doctors</i>
           </Link></li>
         <li className="w-[50%] flex flex-row  gap-[1rem] items-center" >
-          <Link>
-            <i className="fa fa-home">Clinic</i>
+          <Link to="nurses">
+            <i className="fa fa-home">Nurses</i>
           </Link></li>
         <li className="w-[50%] flex flex-row  gap-[1rem] items-center" >
-          <Link >
+          <Link to="appointment" >
           <i className="fa fa-home">Appointment</i>
         </Link></li>
-        <li className="w-[50%] flex flex-row  gap-[1rem] items-center" >
-          <Link>
-            <i  className="fa fa-home">Patients</i>
-          </Link></li>
       </ul>
     </div>
   );

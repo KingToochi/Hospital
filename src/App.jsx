@@ -14,6 +14,8 @@ import Page404 from "./components/auth/404";
 import Unauthorized from "./components/Unathourized";
 import RequiredAuth from "./components/auth/RequiredAuth";
 import Doctors from "./components/admin/Doctor";
+import Nurses from "./components/admin/Nurses";
+import Appointment from "./components/admin/Appointment";
 
 
 function App() {
@@ -34,6 +36,8 @@ function App() {
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<Overview />} />
             <Route path="doctors" element={<Doctors/>} />
+            <Route path="nurses" element={<Nurses/>} />
+            <Route path="appointment" element={<Appointment/>} />
           </Route>
         </Route>
         
