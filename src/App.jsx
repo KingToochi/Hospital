@@ -16,6 +16,7 @@ import RequiredAuth from "./components/auth/RequiredAuth";
 import Doctors from "./components/admin/Doctor";
 import Nurses from "./components/admin/Nurses";
 import Appointment from "./components/admin/Appointment";
+import NewPatient from "./components/admin/NewPatient";
 
 
 function App() {
@@ -47,6 +48,8 @@ function App() {
         <Route path="*" element={<Page404 />} />
       </Routes>
     </div>
+
+    // <NewPatient />
   );
 }
 

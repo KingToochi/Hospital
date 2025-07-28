@@ -2,11 +2,13 @@ import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../context/AuthProvider";
 import {baseUrl} from "../../api/baseUrl"
 import axios from "axios"
+import NewPatient from "./NewPatient";
 const Overview = () => {
     const {auth} = useContext(AuthContext);
     const url = baseUrl + "patient";
     const [patients, setPatients] = useState([]);
     const [loading, setLoading] = useState(false)
+    const [showModal, setShowModal] = useState(false)
 
     const getPatients = async() => {
       try{
@@ -28,11 +30,58 @@ const Overview = () => {
     },[]
   )
 
-    console.log(auth)
+    // console.log(auth)
+  // const displayShowModal = () => {
+  //   if (showModal === true) {
+  //     return <NewPatient />
+  //   } 
+  //   else {
+  //     return null
+  //   }
+  
+  // }
+
+  const displayShowModal = () => {
+  if (showModal) {
+    return (
+      <div className="fixed inset-0 bg-opacity-50 flex  justify-center z-50 overflow-y-auto mt-10 backdrop-blur">
+        <div className="bg-gray-50 rounded-lg shadow-lg p-6 w-full max-w-lg relative h-[180vh]">
+          <div
+          className="flex flex-row items-center justify-between border-b-2 border-gray-900 h-[5%]"
+          >
+            <h1>Create New Patient</h1>
+            <button
+            onClick={() => setShowModal(false)}
+            className=" text-gray-600 hover:text-red-600 text-xl"
+            >
+              ×
+            </button>
+          </div>
+          <NewPatient />
+        </div>
+      </div>
+    );
+  }
+  return null;
+};
+
+  
+  const handleClick = (e) => {
+    e.preventDefault();
+    setShowModal(true)
+  }
+
+  
+  
 
     return (
       <div>
-        <h1>Patients</h1>
+        <h1 className="text-center font-medium capitalize text-gray-700">Patients</h1>
+        <div className="flex justify-end items-center mx-2 my-2 ">
+          <button
+            className="flex justify-center items-center w-[150px] font-medium capitalize text-gray-700 flex border-1 border-gray-300 rounded-lg cursor-pointer py-2  "
+            type="button" onClick={handleClick}>New Patient</button>
+        </div>
 
         <div className="border rounded-lg border-gray-900 dark:border-gray-400 h-auto mb-4">
           <table className="w-full border-collapse bg-white text-left text-gray-900">
@@ -80,9 +129,9 @@ const Overview = () => {
                     </div>
                   </th>
 
-                  <th className="flex gap-3 px-2 py-4 font-normal text-gray-900 text-center">
-                    <div className="text-sm">
-                      <div className="font-medium capitalize text-gray-700">
+                  <th className="flex gap-3 px-2 py-4 font-normal text-gray-900 text-center justify-center">
+                    <div className="text-sm text-center">
+                      <div className="font-medium capitalize text-gray-700 text-center">
                         {`${patient.firstname} ${patient.lastname}`}
                       </div>
                       <div className="text-gray-400">{patient.email}</div>
@@ -119,8 +168,10 @@ const Overview = () => {
             </tbody>
           </table>
         </div>
+        {displayShowModal()}
+        
       </div>
-);
+  );
 
 }
  

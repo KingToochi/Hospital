@@ -30,8 +30,12 @@ const Doctors = () => {
     },[]
   )
 
-  //  console.log(auth)
-    
+  const handleClick = (e) => {
+    e.preventDefault();
+
+  }
+  
+
     return (  
         <div>
         <h1>Doctors</h1>
@@ -101,6 +105,11 @@ const Doctors = () => {
               )}
             </tbody>
           </table>
+        </div>
+        <div className="flex justify-end items-center mx-2 my-2 ">
+          <button
+            className="flex justify-center items-center w-[150px] font-medium capitalize text-gray-700 flex border-1 border-gray-300 rounded-lg cursor-pointer py-2  "
+            type="button" onClick={handleClick}>New Doctor</button>
         </div>
       </div>
 
