@@ -44,15 +44,15 @@ const Overview = () => {
   const displayShowModal = () => {
   if (showModal) {
     return (
-      <div className="fixed inset-0 bg-opacity-50 flex  justify-center z-50 overflow-y-auto mt-10 backdrop-blur">
-        <div className="bg-gray-50 rounded-lg shadow-lg p-6 w-full max-w-lg relative h-[180vh]">
+      <div className="fixed inset-0 bg-opacity-50 flex  justify-center z-50 overflow-y-auto mt-10 backdrop-blur ">
+        <div className="bg-gray-900 rounded-lg shadow-lg p-6 w-full max-w-lg relative h-[180vh] ">
           <div
-          className="flex flex-row items-center justify-between border-b-2 border-gray-900 h-[5%]"
+          className="flex flex-row items-center justify-between border-b-2 border-gray-400 h-[5%]"
           >
-            <h1>Create New Patient</h1>
+            <h1 className="text-gray-50 text-base">Create Patient</h1>
             <button
             onClick={() => setShowModal(false)}
-            className=" text-gray-600 hover:text-red-600 text-xl"
+            className=" text-gray-50 text-base hover:text-red-600 "
             >
               ×
             </button>

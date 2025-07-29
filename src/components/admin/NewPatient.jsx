@@ -1,468 +1,315 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { baseUrl } from "../../api/baseUrl";
+import useAuth from "../../hooks/UseAuth";
 
 const NewPatient = () => {
-  const [formData, setformData] = useState({
-    fName: "",
-    lName: "",
-    email: "",
-    phoneNumber: "",
-    dob: "",
-    weight: "",
-    height: "",
-    eContact: "",
-    address: "",
-    bloodGroup: "",
-    genotype: "",
-    patientStatus: "",
-    patientNumber: "",
-    medicalHistory: "",  
-    gender: "", 
-  });
-
-  const [error, setError] = useState({});
-
-  const validateForm = () => {
-  const newErrors = {};
-
-  if (!formData.fName.trim()) {
-    newErrors.fName = "Field Required";
-  }
-
-  if (!formData.lName.trim()) {
-    newErrors.lName = "Field Required";
-  }
-
-  if (!formData.email.trim()) {
-    newErrors.email = "Field Required";
-  } else if (!formData.email.includes("@")) {
-    newErrors.email = "Enter valid email";
-  }
-
-  if (!formData.phoneNumber.trim()) {
-    newErrors.phoneNumber = "Field Required";
-  }
-
-  if (!formData.gender.trim()) {
-    newErrors.gender = "Field Required";
-  }
-
-  if (!formData.dob.trim()) {
-    newErrors.dob = "Field Required";
-  }
-
-  if (!formData.eContact.trim()) {
-    newErrors.eContact = "Field Required";
-  }
-
-  if (!formData.address.trim()) {
-    newErrors.address = "Field Required";
-  }
-
-  if (!formData.bloodGroup.trim()) {
-    newErrors.bloodGroup = "Field Required";
-  }
-
-  if (!formData.genotype.trim()) {
-    newErrors.genotype = "Field Required";
-  }
-
-  return newErrors;
-};
-
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setformData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const validateError = validateForm();
-    if (Object.keys(validateError).length > 0) {
-      setError(validateError);
-      return;
-}
- else {
-      setError({});
-    setformData({
-      fName: "",
-      lName: "",
-      email: "",
-      phoneNumber: "",
-      dob: "",
-      weight: "",
-      height: "",
-      eContact: "",
-      address: "",
-      bloodGroup: "",
-      genotype: "",
-      patientStatus: "",
-      patientNumber: "",
-      medicalHistory: "",
-      gender: "",
-    });
-
-    }
-    console.log(setError);
+  const { auth } = useAuth();
+  const url = `${baseUrl}patient`;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const handlePatient = (data) => {
+    console.log(data);
   };
 
   return (
     <form
-      method="post"
-      onSubmit={handleSubmit}
-      className="flex flex-col w-full items-center justify center gap-10 p-4"
+      onSubmit={handleSubmit(handlePatient)}
+      className="grid sm:grid-cols-2 gap-6 px-2 py-2 bg-gray-900"
     >
-      <div className="flex justify-center items-center w-[80%] gap-4 ">
-        <div className="flex flex-col bg- w-1/2 gap-1 ">
-          <label
-            htmlFor="fName"
-            className="text-base font-medium text-gray-900"
-          >
-            First Name
-          </label>
-          <input
-            className="w-full px-2 py-1 text-gray-900 text-base border-2 border-gray-600 rounded-lg"
-            type="text"
-            onChange={handleChange}
-            name="fName"
-            value={formData.fName}
-            placeholder="enter your first name"
-            id="fName"
-          />
-          {error.fName && <p className="text-red-300 mb-2">{error.fName}</p>}
-        </div>
-
-        <div className="flex flex-col bg- w-1/2 gap-1 ">
-          <label
-            className="text-base font-medium text-gray-900"
-            htmlFor="lName"
-          >
-            {" "}
-            Last Name{" "}
-          </label>
-          <input
-            className="w-full px-2 py-1 text-gray-900 text-base border-2 border-gray-600 rounded-lg"
-            type="text"
-            onChange={handleChange}
-            name="lName"
-            value={formData.lName}
-            placeholder="enter your last name"
-            id="lName"
-          />
-          {error.lName && <p className="text-red-300 mb-2">{error.lName}</p>}
-        </div>
-      </div>
-      <div className="flex justify-center items-center w-[80%] gap-4 ">
-        <div className="flex flex-col bg- w-1/2 gap-1 ">
-          <label
-            className="text-base font-medium text-gray-900"
-            htmlFor="email"
-          >
-            Email Address{" "}
-          </label>
-          <input
-            className="w-full px-2 py-1 text-gray-900 text-base border-2 border-gray-600 rounded-lg"
-            type="email"
-            onChange={handleChange}
-            name="email"
-            value={formData.email}
-            placeholder="enter your email address"
-            id="email"
-          />
-          {error.email && <p className="text-red-300 mb-2">{error.email}</p>}
-        </div>
-
-        <div className="flex flex-col bg- w-1/2 gap-1">
-          <label
-            className="text-base font-medium text-gray-900"
-            htmlFor="phoneNumber"
-          >
-            Phone Number{" "}
-          </label>
-          <input
-            className="w-full px-2 py-1 text-gray-900 text-base border-2 border-gray-600 rounded-lg"
-            type="tel"
-            onChange={handleChange}
-            name="phoneNumber"
-            value={formData.phoneNumber}
-            placeholder="phoneNumber"
-            id="phoneNumber"
-          />
-          {error.phoneNumber && (
-            <p className="text-red-300 mb-2">{error.phoneNumber}</p>
-          )}
-        </div>
+      <div className="flex flex-col">
+        <label className="text-base font-medium text-white" htmlFor="fname">
+          First Name
+        </label>
+        <input
+          className="border-2 border-gray-100 w-full rounded-lg px-1 py-1 text-gray-50"
+          type="text"
+          id="fname"
+          placeholder="Enter Your First Name"
+          {...register("firstname", { required: "first name required!" })}
+        />
+        {errors.firstname && (
+          <p className="text-red-300 mb-2">{errors.firstname.message}</p>
+        )}
       </div>
 
-      <div className="flex justify-center items-center w-[80%] gap-4 ">
-        <div className="flex flex-col bg- w-1/2 gap-1">
-          <label
-            className="text-base font-medium text-gray-900"
-            htmlFor="gender"
-          >
-            Gender
-          </label>
-          <select
-            className="w-full px-2 py-1 text-gray-900 text-base border-2 border-gray-600 rounded-lg"
-            onChange={handleChange}
-            name="gender"
-            id="gender"
-            value={formData.gender}
-          >
-            <option
-              value=""
-              selected
-              hidden
-              disabled
-              className="
-                        text-base text-gray-600 font-light
-                        "
-            >
-              Select Gender
-            </option>
-            <option value="male">male</option>
-            <option value="female">female</option>
-          </select>
-          {error.gender && <p className="text-red-300 mb-2">{error.gender}</p>}
-        </div>
-
-        <div className="flex flex-col bg- w-1/2 gap-1">
-          <label className="text-base font-medium text-gray-900" htmlFor="dob">
-            Date of Birth
-          </label>
-          <input
-            className="w-full px-2 py-1 text-gray-900 text-base border-2 border-gray-600 rounded-lg"
-            type="date"
-            id="dob"
-            onChange={handleChange}
-            name="dob"
-            value={formData.dob}
-          />
-          {error.dob && <p className="text-red-300 mb-2">{error.dob}</p>}
-        </div>
+      <div className="flex flex-col">
+        <label className="text-base font-medium text-white" htmlFor="lname">
+          Last Name
+        </label>
+        <input
+          className="border-2 border-gray-100 w-full rounded-lg px-1 py-1 text-gray-50"
+          type="text"
+          id="lname"
+          placeholder="Enter Your Last Name"
+          {...register("lastname", { required: "Last Name required!" })}
+        />
+        {errors.lastname && (
+          <p className="text-red-300 mb-2">{errors.lastname.message}</p>
+        )}
       </div>
 
-      <div className="flex justify-center items-center w-[80%] gap-4 ">
-        <div className="flex flex-col bg- w-1/2 gap-1">
-          <label
-            className="text-base font-medium text-gray-900"
-            htmlFor="weight"
-          >
-            Weight (optional)
-          </label>
-          <input
-            className="w-full px-2 py-1 text-gray-900 text-base border-2 border-gray-600 rounded-lg"
-            onChange={handleChange}
-            name="weight"
-            value={formData.weight}
-            id="weight"
-            type="number"
-            placeholder="enter your weight"
-          />
-        </div>
-
-        <div className="flex flex-col bg- w-1/2 gap-1">
-          <label
-            className="text-base font-medium text-gray-900"
-            htmlFor="height"
-          >
-            height (optional)
-          </label>
-          <input
-            className="w-full px-2 py-1 text-gray-900 text-base border-2 border-gray-600 rounded-lg"
-            onChange={handleChange}
-            name="height"
-            value={formData.height}
-            id="height"
-            type="number"
-            placeholder="enter your height"
-          />
-        </div>
+      <div className="flex flex-col">
+        <label className="text-base font-medium text-white" htmlFor="email">
+          Email Address
+        </label>
+        <input
+          className="border-2 border-gray-100 w-full rounded-lg px-1 py-1 text-gray-50"
+          type="email"
+          id="email"
+          placeholder="Enter Your Email Address"
+          {...register("email", { required: "email required!" })}
+        />
+        {errors.email && (
+          <p className="text-red-300 mb-2">{errors.email.message}</p>
+        )}
       </div>
 
-      <div className="flex justify-center items-center w-[80%] gap-4 ">
-        <div className="flex flex-col bg- w-1/2 gap-1">
-          <label
-            className="text-base font-medium text-gray-900"
-            htmlFor="eContact"
-          >
-            Emergency Contact
-          </label>
-          <input
-            className="w-full px-2 py-1 text-gray-900 text-base border-2 border-gray-600 rounded-lg"
-            onChange={handleChange}
-            name="eContact"
-            id="eContact"
-            value={formData.eContact}
-            type="tel"
-            placeholder="enter the emergency number"
-          />
-          {error.name && <p className="text-red-300 mb-2">{error.eContact}</p>}
-        </div>
-
-        <div className="flex flex-col bg- w-1/2 gap-1">
-          <label
-            className="text-base font-medium text-gray-900"
-            htmlFor="address"
-          >
-            Address
-          </label>
-          <input
-            className="w-full px-2 py-1 text-gray-900 text-base border-2 border-gray-600 rounded-lg"
-            onChange={handleChange}
-            name="address"
-            id="address"
-            value={formData.address}
-            type="text"
-            placeholder="enter your address"
-          />
-          {error.name && <p className="text-red-300 mb-2">{error.address}</p>}
-        </div>
-      </div>
-      <div className="flex justify-center items-center w-[80%] gap-4 ">
-        <div className="flex flex-col bg- w-1/2 gap-1">
-          <label
-            className="text-base font-medium text-gray-900"
-            htmlFor="bloodGroup"
-          >
-            Blood Group{" "}
-          </label>
-          <select
-            className="w-full px-2 py-1 text-gray-900 text-base border-2 border-gray-600 rounded-lg"
-            onChange={handleChange}
-            name="bloodGroup"
-            id="bloodGroup"
-          >
-            <option
-              value=""
-              selected
-              hidden
-              disabled
-              className="
-                        text-base text-gray-600 font-light
-                        "
-            >
-              Select Blood Group
-            </option>
-            <option value="O+">O+</option>
-            <option value="O-">O-</option>
-            <option value="A+">A+</option>
-            <option value="A-">A-</option>
-            <option value="AB+">AB+</option>
-            <option value="AB-">AB-</option>
-            <option value="B+">B+</option>
-            <option value="B-">B-</option>
-          </select>
-          {error.name && (
-            <p className="text-red-300 mb-2">{error.bloodGroup}</p>
-          )}
-        </div>
-
-        <div className="flex flex-col bg- w-1/2 gap-1">
-          <label
-            className="text-base font-medium text-gray-900"
-            htmlFor="genotype"
-          >
-            Genotype{" "}
-          </label>
-          <select
-            className="w-full px-2 py-1 text-gray-900 text-base border-2 border-gray-600 rounded-lg"
-            onChange={handleChange}
-            name="genotype"
-            id="genotype"
-          >
-            <option
-              value=""
-              selected
-              hidden
-              disabled
-              className="
-                        text-base text-gray-600 font-light
-                        "
-            >
-              Select Genotype
-            </option>
-            <option value="AA">AA</option>
-            <option value="AS">AS</option>
-            <option value="SS">SS</option>
-            <option value="AC">AC</option>
-            <option value="SC">SC</option>
-          </select>
-          {error.name && <p className="text-red-300 mb-2">{error.genotype}</p>}
-        </div>
+      <div className="flex flex-col">
+        <label className="text-base font-medium text-white" htmlFor="phone">
+          Phone Number
+        </label>
+        <input
+          className="border-2 border-gray-100 w-full rounded-lg px-1 py-1 text-gray-50"
+          type="text"
+          id="phone"
+          placeholder="Enter Your Phone Number"
+          {...register("phone", { required: "Phone Number required!" })}
+        />
+        {errors.phone && (
+          <p className="text-red-300 mb-2">{errors.phone.message}</p>
+        )}
       </div>
 
-      <div className="flex justify-center items-center w-[80%] gap-4 ">
-        <div className="flex flex-col bg- w-1/2 gap-1">
-          <label
-            className="text-base font-medium text-gray-900"
-            htmlFor="patientStatus"
-          >
-            Patient Status
-          </label>
-          <select
-            className="w-full px-2 py-1 text-gray-900 text-base border-2 border-gray-600 rounded-lg"
-            onChange={handleChange}
-            name="patientStatus"
-            id="patientStatus"
-          >
-            <option
-              value=""
-              selected
-              hidden
-              disabled
-              className="
-                        text-base text-gray-600 font-light
-                        "
-            >
-              Select Status
-            </option>
-            <option value="sick">Sick</option>
-            <option value="notSkick">Not Sick</option>
-          </select>
-        </div>
+      <div className="flex flex-col">
+        <label className="text-base font-medium text-white" htmlFor="gender">
+          Gender
+        </label>
+        <select
+          className="border-2 border-gray-100 w-full rounded-lg px-1 py-1 text-gray-50 bg-gray-900"
+          {...register("gender", { required: "Gender required" })}
+          id="gender"
+        >
+          <option disabled hidden selected>
+            select Gender
+          </option>
+          <option>Male</option>
+          <option>Female</option>
+        </select>
 
-        <div className="flex flex-col bg- w-1/2 gap-1">
-          <label
-            className="text-base font-medium text-gray-900"
-            htmlFor="patientNumber"
-          >
-            Patient Number
-          </label>
-          <input
-            className="w-full px-2 py-1 text-gray-900 text-base border-2 border-gray-600 rounded-lg"
-            onChange={handleChange}
-            name="patientNumber"
-            value={formData.patientNumber}
-            id="patientNumber"
-            type="text"
-            placeholder="enter the patient number"
-          />
-        </div>
+        {errors.gender && (
+          <p className="text-red-300 mb-2">{errors.gender.message}</p>
+        )}
       </div>
-      <div className="flex flex-col justify-center items-left w-[80%] gap-4 ">
+
+      <div className="flex flex-col">
         <label
-          className="text-base font-medium text-gray-900"
+          className="text-base font-medium text-white"
+          htmlFor="dateOfBirth"
+        >
+          Date of Birth
+        </label>
+        <input
+          className="border-2 border-gray-100 w-full rounded-lg px-1 py-1 text-gray-50"
+          type="date"
+          id="dateOfBirth"
+          {...register("dateOfBirth", { required: "Date of Birth required!" })}
+        />
+        {errors.dateOfBirth && (
+          <p className="text-red-300 mb-2">{errors.dateOfBirth.message}</p>
+        )}
+      </div>
+
+      <div className="flex flex-col">
+        <label className="text-base font-medium text-white" htmlFor="weight">
+          Weight
+        </label>
+        <input
+          className="border-2 border-gray-100 w-full rounded-lg px-1 py-1 text-gray-50"
+          type="text"
+          id="weight"
+          placeholder="Enter Your Weight in Kg"
+          {...register("weight", { required: "Weight required!" })}
+        />
+        {errors.weight && (
+          <p className="text-red-300 mb-2">{errors.weight.message}</p>
+        )}
+      </div>
+
+      <div className="flex flex-col">
+        <label className="text-base font-medium text-white" htmlFor="height">
+          Height
+        </label>
+        <input
+          className="border-2 border-gray-100 w-full rounded-lg px-1 py-1 text-gray-50"
+          type="text"
+          id="height"
+          placeholder="Enter Your Height in Kg"
+          {...register("height", { required: "Height required!" })}
+        />
+        {errors.height && (
+          <p className="text-red-300 mb-2">{errors.height.message}</p>
+        )}
+      </div>
+
+      <div className="flex flex-col">
+        <label
+          className="text-base font-medium text-white"
+          htmlFor="emergencyContact"
+        >
+          Emergency Contact
+        </label>
+        <input
+          className="border-2 border-gray-100 w-full rounded-lg px-1 py-1 text-gray-50"
+          type="text"
+          id="emergencyContact"
+          placeholder="Enter Your Emergency Contact"
+          {...register("emergencyContact", {
+            required: "Emergency Contact required!",
+          })}
+        />
+        {errors.emergencyContact && (
+          <p className="text-red-300 mb-2">{errors.emergencyContact.message}</p>
+        )}
+      </div>
+
+      <div className="flex flex-col">
+        <label className="text-base font-medium text-white" htmlFor="address">
+          Address
+        </label>
+        <input
+          className="border-2 border-gray-100 w-full rounded-lg px-1 py-1 text-gray-50"
+          type="text"
+          id="address"
+          placeholder="Enter Your Address"
+          {...register("address", { required: "Address required!" })}
+        />
+        {errors.address && (
+          <p className="text-red-300 mb-2">{errors.address.message}</p>
+        )}
+      </div>
+
+      <div className="flex flex-col">
+        <label
+          className="text-base font-medium text-white"
+          htmlFor="bloodGroup"
+        >
+          Blood Group
+        </label>
+        <select
+          className="border-2 border-gray-100 w-full rounded-lg px-1 py-1 text-gray-50 bg-gray-900"
+          {...register("bloodGroup", { required: "Blood Group required" })}
+          id="bloodGroup"
+        >
+          <option selected hidden disabled>
+            select Blood Group
+          </option>
+          <option>O+</option>
+          <option>O-</option>
+          <option>A+</option>
+          <option>A-</option>
+          <option>B+</option>
+          <option>B-</option>
+          <option>AB+</option>
+          <option>AB-</option>
+        </select>
+        {errors.bloodGroup && (
+          <p className="text-red-300 mb-2">{errors.bloodGroup.message}</p>
+        )}
+      </div>
+
+      <div className="flex flex-col">
+        <label className="text-base font-medium text-white" htmlFor="genotype">
+          Genotype
+        </label>
+        <select
+          className="border-2 border-gray-100 w-full rounded-lg px-1 py-1 text-gray-50 bg-gray-900"
+          {...register("genotype", { required: "Genotype required" })}
+          id="genotype"
+        >
+          <option selected hidden disabled>
+            select Genotype
+          </option>
+          <option>AA</option>
+          <option>AS</option>
+          <option>SS</option>
+          <option>AC</option>
+          <option>CC</option>
+          <option>SC</option>
+        </select>
+        {errors.genotype && (
+          <p className="text-red-300 mb-2">{errors.genotype.message}</p>
+        )}
+      </div>
+
+      <div className="flex flex-col">
+        <label className="text-base font-medium text-white" htmlFor="status">
+          Patient Status
+        </label>
+        <select 
+        className="border-2 border-gray-100 w-full rounded-lg px-1 py-1 text-gray-50 bg-gray-900"
+        id="status" 
+        {...register("status",{required: "Status Required"})}
+        >
+          <option selected hidden disabled>Select Status</option>
+          <option>Check up</option>
+          <option>Consultation</option>
+
+        </select>
+        {errors.status && (
+          <p className="text-red-300 mb-2">{errors.status.message}</p>
+        )}
+      </div>
+
+      <div className="flex flex-col">
+        <label
+          className="text-base font-medium text-white"
+          htmlFor="patientNumber"
+        >
+          Patient Number
+        </label>
+        <input
+          className="border-2 border-gray-100 w-full rounded-lg px-1 py-1 text-gray-50"
+          type="text"
+          id="patientNumber"
+          placeholder="Enter Your Patient Number"
+          {...register("patientNumber", {
+            required: "Patient Number required!",
+          })}
+        />
+        {errors.patientNumber && (
+          <p className="text-red-300 mb-2">{errors.patientNumber.message}</p>
+        )}
+      </div>
+
+      <div className="col-span-2">
+        <label
+          className="text-base font-medium text-white"
           htmlFor="medicalHistory"
         >
           Medical History
         </label>
         <textarea
-          className="w-full h-[30vh] px-2 py-1 text-gray-900 text-base border-2 border-gray-600 rounded-lg"
-          value={formData.medicalHistory}
+          className="border-2 border-gray-100 w-full h-[30vh] rounded-lg px-1 py-1 text-gray-50 bg-gray-900"
           id="medicalHistory"
-          onChange={handleChange}
-          name="medicalHistory"
-          placeholder="write patient medical history here"
+          placeholder="Enter your Medical History"
+          {...register("medicalHistory", {
+            required: "Medical History required!",
+          })}
         />
+        {errors.medicalHistory && (
+          <p className="text-red-300 mb-2">{errors.medicalHistory.message}</p>
+        )}
       </div>
-      <button
-      className="text-base font-medium text-gray-900 border-2 border-gray-600 rounded-lg cursor-pointer w-[100px]"
+
+      <div className="col-span-2 flex justify-center">
+        <button 
+       className="w-[30%] border-2 border-gray-100 rounded-lg px-1 py-1 text-gray-50 "
       type="submit">Add Patient</button>
+      </div>
     </form>
   );
 };
