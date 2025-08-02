@@ -1,41 +1,43 @@
-import { Link } from 'react-router-dom';
-import image from '../assets/images/3.jpg'
+import { Link } from "react-router-dom";
+import image from "../assets/images/3.jpg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
+import Services from "./Services";
+import ServiceList from "./Services";
 const Hero_section = () => {
-    return (  
-        <section className='hero block '>
-            <div className="text-container">
-                <img className="w-full h-[700px] relative" src={image} alt="doctor's image"/>
-                <div className='absolute top-80 left-10 w-[500px] items-center flex flex-col'>
-                    <h1 className='text-[70px] font-black'>Health care </h1> 
-                    <h2 className='text-[50px] font-bold'>for Whole Family</h2>
-                    <p className='text-gray-1 text-[15px]'>In healthcare sectors, service excellence is the facility <br />of the hospital as healthcare service providers to consistently</p>
-                    <Link className='w-[200px] h-[50px] pl-8 rounded-[50px] pt-3 border border-solid bg-blue-300' href='/'>Check Our Services</Link>
-                </div>
-            </div>
-        
-            <div className="hero-section-info flex h-[300px] w-full">
-                <div className='w-[33%] bg-blue-200 flex flex-col items-center justify-center'>
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB4UlEQVR4nO1ZPU/DMBB9YSoTGwMT5U/AyMwORbR8igaEVNaKBTL2NyDBUvgVXWEG+htoVxakDNAGWTLS6RTHTkNkl/hJJ7nV3fm9+uyzasDDw4NjDUAIoOuYhQDq0OAYQAwgcdRiAEdZv7zL5BMiInUlQuI0BNBzzIaEXztNQEQcxNg1RDp+lRMQANiVlhc7Mi6wKeCG+J/nIHJN4k5sCdgE8E38xwAWDUjwuDcbApYlYX68dTQEVHHrZQpYANBiHfGZ+H2R8TuAGsvZUMRRu5N7YT+l+7bIPplJQCujoYhS2AIwUqzCWUbcFfn8KeNU8zTLEiA2I9jkv6tQk+O0OLH5BV7Jdx9lCQhkAt4VG2RpOdkOEzVWxF0oCPeJ/17REjIFJTzKKCuKJVk+XMCKwr9UAaqS0R2v98xflJK1q8TlDEfrBvN/simAr4Jpc3shMbc2BfCjU4xNEJKYAxduo+Kitp3DP5BNrKm53PnrtG1EeUpo4MC/EF1mgzwCXLfIC4BfAfgSqsQmnrD7eZYJv2lBYhM2nyqnsQCRIA8eCgroG+asjoCpTGDSKR//oISmbD5VTt/Iknk5hZJ5EhA6QCwxtNN/+cQE+YDmsogYwCE0qMs3qJ5j1gawqiPv4VE1/ACqqzLKagfh+AAAAABJRU5ErkJggg==" alt="external-ekg-or-ecg-machine-with-wave-monitor-layout-hospital-bold-tal-revivo" />
-                    <h1>Hospitality</h1>
-                    <h2>Clinical excellence must be the priority <br />for any health care service provider.</h2>
-                    <Link href="/">Apply For Bed</Link>
-                </div>
-                
-                <div className='w-[34%] bg-blue-300 flex flex-col items-center justify-center'>
-                    <img src="data:image/png;base64,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" alt="external-emergency-call-medical-nawicon-detailed-outline-nawicon"></img>
-                    <h1>Emergency Care</h1>
-                    <h2>Clinical excellence must be the priority<br /> for any health care service provider.</h2>
-                    <Link href="tel:+2349031183272">+2349031183272</Link>
-                </div>
-                <div className='w-[33%] bg-blue-200 flex flex-col items-center justify-center'>
-                    <img src="data:image/png;base64,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" alt="external-emergency-call-medical-nawicon-detailed-outline-nawicon"></img>
-                    <h1>Chamber service</h1>
-                    <h2>Clinical excellence must be the priority <br />for any health care service provider.</h2>
-                    <Link href="/">Make an Appointment</Link>
-                </div>
-            </div>
-        </section>
-    );
-}
- 
+  return (
+    <section className="w-full flex flex-col ">
+      <div
+        className="w-full h-[20vh] flex flex-row
+            lg:h-[80vh]
+            "
+      >
+        <img className="w-full relatiive" src={image} alt="doctor's image" />
+        <div
+          className="w-auto text-base font-bold text-gray-900 flex flex-col items-center justify-centerbg-blue-300 absolute top-[15%] left-[5%]
+                lg:top-[40%] lg:left-[10%]
+                "
+        >
+          <h1 className="">Health care </h1>
+          <h2 className="">for Whole Family</h2>
+          <p className="">
+            In healthcare sectors, service excellence is the facility <br />
+            of the hospital as healthcare service providers to consistently
+          </p>
+          <Link
+            to="/"
+            className="bg-blue-300 w-[22vw] text-center border-2 rounded-lg"
+          >
+            Check Our Services
+          </Link>
+        </div>
+      </div>
+
+      <div w-full>
+        <ServiceList />
+      </div>
+    </section>
+  );
+};
+
 export default Hero_section;

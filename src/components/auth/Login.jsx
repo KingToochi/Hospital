@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AuthContext from "../../context/AuthProvider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Login = () => {
   const url = `${baseUrl}login`;
@@ -68,20 +69,21 @@ const Login = () => {
     }
   };
   return (
-    <div className="bg-sky-50 flex flex-col h-auto gap-[5rem] items-center w-[50%] m-auto">
+    <div className="w-full flex flex-col items-center justify-center min-h-screen">
+      <div className="w-[70%] flex flex-col gap-10 items-center font-[roboto] bg-gray-300 px-4 py-4 ">
       <ToastContainer />
-      <div className="flex flex-col items-center gap-[3rem]">
-        <img className="rounded-[50px] mt-[50px]" src={logo} alt="logo" />
-        <h2>LOG IN</h2>
+      <div className="flex flex-col gap-6 items-center">
+        <img className="rounded-[50%] w-[100px]" src={logo} alt="logo" />
+        <h2 className="text-2xl font-bold text-gray-600">LOGIN</h2>
       </div>
       <form
-        className="flex flex-col gap-[3rem] w-full mb-10"
+        className="flex flex-col items-center gap-20"
         onSubmit={handleSubmit(login)}
       >
-        <label className="flex w-[80%] gap-[0.5rem] border-b-2 items-center m-auto">
-          <i className="fa fa-user"></i>
+        <label className="w-full border-2 rounded-lg border-gray-600 h-[50px] flex gap-2 items-center">
+          <FontAwesomeIcon className="text-3xl" icon="fa fa-user" />
           <input
-            className="w-[97.5%] border-0 focus:outline-none"
+            className="w-full h-[45px] p-2 text-3xl bg-gray-300"
             type="email"
             name="email"
             placeholder="Email Adddress"
@@ -90,10 +92,10 @@ const Login = () => {
         </label>
         {errors.email && <p className="text-red-400">email is required</p>}
 
-        <label className="flex w-[80%] gap-[0.5rem] border-b-2 items-center m-auto">
-          <i className="fa fa-lock"></i>
+        <label className="w-full border-2 rounded-lg border-gray-600 h-[50px] flex gap-2 items-center">
+          <FontAwesomeIcon className="text-3xl" icon="fa fa-lock" />
           <input
-            className="w-[97.5%] border-0 focus:outline-none"
+            className="w-full h-[45px] p-2 text-3xl bg-gray-300"
             type="password"
             name="password"
             placeholder="password"
@@ -103,19 +105,22 @@ const Login = () => {
         {errors.email && <p className="text-red-400">password is required</p>}
 
         <button
-          className="border-2 rounded-[10px] w-[20%] m-auto bg-white cursor-pointer"
+          className="w-[150px] text-2xl font-bold border-2 rounded-lg border-gray-600"
           type="submit"
         >
           {loading ? "Loggin in..." : "Login"}
         </button>
-        <label className="flex ml-[50px]">
-          <input type="checkbox" checked="defaultChecked" name="remember" />{" "}
+        <label className="">
+          <input 
+          className="text-xl font-semibold"
+          type="checkbox" checked="defaultChecked" name="remember" />{" "}
           Remember me
-          <span className="ml-[250px]">
+          <span className="ml-[250px] text-xl font-semibold">
             Forgot <Link href="#">password?</Link>
           </span>
         </label>
       </form>
+      </div>
     </div>
   );
 };

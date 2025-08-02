@@ -1,5 +1,10 @@
 import { Routes, Route } from "react-router-dom";
-import "font-awesome/css/font-awesome.min.css";
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+// import your icons
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { far } from '@fortawesome/free-regular-svg-icons'
 import Layout from "./components/Layout";
 import Home from "./components/Home";
 import About from "./components/About";
@@ -16,12 +21,12 @@ import RequiredAuth from "./components/auth/RequiredAuth";
 import Doctors from "./components/admin/Doctor";
 import Nurses from "./components/admin/Nurses";
 import Appointment from "./components/admin/Appointment";
-import NewPatient from "./components/admin/NewPatient";
+
 
 
 function App() {
   return (
-    <div>
+    <div className="overflow-x-hidden"> 
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
@@ -48,9 +53,8 @@ function App() {
         <Route path="*" element={<Page404 />} />
       </Routes>
     </div>
-
-    // <NewPatient />
   );
 }
 
 export default App;
+library.add(fab, fas, far)

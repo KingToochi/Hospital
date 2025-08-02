@@ -5,7 +5,7 @@ const Main = () => {
     return ( 
         <div>
             <HeroSection />
-            <MainSection />
+            {/* <MainSection /> */}
             <Department />
 
         </div>
