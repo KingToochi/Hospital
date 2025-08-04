@@ -30,16 +30,7 @@ const Overview = () => {
     },[]
   )
 
-    // console.log(auth)
-  // const displayShowModal = () => {
-  //   if (showModal === true) {
-  //     return <NewPatient />
-  //   } 
-  //   else {
-  //     return null
-  //   }
-  
-  // }
+    
 
   const displayShowModal = () => {
   if (showModal) {
