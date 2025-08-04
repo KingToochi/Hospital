@@ -70,8 +70,8 @@ const Department = () => {
   const current = listOfDepartments[currentIndex];
 
   return (
-    <div className="text-center p-4">
-      <div className="mx-auto max-w-md border rounded-md shadow-md p-4">
+    <div className="text-center p-4 bg-gray-300">
+      <div className="mx-auto max-w-md border rounded-md shadow-md p-4 md:hidden ">
         <img
           src={current.departmentImage}
           alt={current.departmentName}
@@ -86,9 +86,31 @@ const Department = () => {
           {current.moreLink}
         </Link>
         <div className="flex justify-between mt-4">
-          <button onClick={handlePrev}>&larr; Prev</button>
-          <button onClick={handleNext}>Next &rarr;</button>
+          <button className="cursor-pointer" onClick={handlePrev}>&larr; Prev</button>
+          <button className="cursor-pointer" onClick={handleNext}>Next &rarr;</button>
         </div>
+      </div>
+
+      <div 
+      className="hidden md:grid grid-cols-3 w-[90%] mx-auto gap-4"
+      >
+        {listOfDepartments.map((current, index) => (
+          <div
+          className="border-2 border-gray-900 rounded-lg"
+          key={index} >
+            <img  src={current.departmentImage}/>
+            <h1 className="text-xl font-semibold text-blue-600">
+              {current.departmentName}
+            </h1>
+            <h2 className="font-semibold text-base text-gray-800"> 
+              {current.description}
+            </h2>
+            <Link 
+            className=" mb-10 px-2 text-base font-bold text-blue-600"
+            to="">{current.moreLink}</Link>
+          </div>
+        )
+      )}
       </div>
     </div>
   );

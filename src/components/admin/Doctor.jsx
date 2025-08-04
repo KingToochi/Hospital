@@ -2,12 +2,15 @@ import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../context/AuthProvider";
 import {baseUrl} from "../../api/baseUrl"
 import axios from "axios"
+import NewDoctor from "./NewDoctor";
+
 
 
 const Doctors = () => {
     const {auth} = useContext(AuthContext);
     const url = baseUrl + "doctor";
     const [doctors, setDoctors] = useState([]);
+    const [showModal, setShowModal] = useState(false)
     
     const getDoctors = async() => {
       try{
@@ -32,8 +35,33 @@ const Doctors = () => {
 
   const handleClick = (e) => {
     e.preventDefault();
+    setShowModal(true)
 
   }
+
+  const displayShowModal = () => {
+  if (showModal) {
+    return (
+      <div className="absolute inset-0 bg-opacity-50 flex justify-center z-50 overflow-y-hidden  mt-10 backdrop-blur ">
+        <div className="bg-gray-900 rounded-lg shadow-lg p-6 w-full max-w-lg relative h-[180vh] ">
+          <div
+          className="flex flex-row items-center justify-between border-b-2 border-gray-400 h-[5%]"
+          >
+            <h1 className="text-gray-50 text-base">Create Doctor</h1>
+            <button
+            onClick={() => setShowModal(false)}
+            className=" text-gray-50 text-base hover:text-red-600 "
+            >
+              ×
+            </button>
+          </div >
+          <NewDoctor />
+        </div>
+      </div>
+    );
+  }
+  return null;
+};
   
 
     return (  
@@ -111,6 +139,7 @@ const Doctors = () => {
             className="flex justify-center items-center w-[150px] font-medium capitalize text-gray-700 flex border-1 border-gray-300 rounded-lg cursor-pointer py-2  "
             type="button" onClick={handleClick}>New Doctor</button>
         </div>
+        {displayShowModal()}
       </div>
 
     );

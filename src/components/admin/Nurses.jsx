@@ -2,10 +2,12 @@ import { useState, useEffect, useContext } from "react";
 import { baseUrl } from "../../api/baseUrl";
 import AuthContext from "../../context/AuthProvider";
 import axios from "axios";
+import NewNurse from "./NewNurse";
 
 
 const Nurses = () => {
     const {auth} = useContext(AuthContext)
+    const [showModal, setShowModal] = useState(false)
     const [nurses, setNurses] = useState([])
     const url = baseUrl + "nurse"
     const getNurses = async() => {
@@ -26,6 +28,36 @@ const Nurses = () => {
     useEffect(() => {
       getNurses()
     },[])
+
+    const handleClick = (e) => {
+    e.preventDefault();
+    setShowModal(true)
+
+  }
+
+  const displayShowModal = () => {
+  if (showModal) {
+    return (
+      <div className="absolute inset-0 bg-opacity-50 flex justify-center z-50 overflow-y-hidden  mt-10 backdrop-blur ">
+        <div className="bg-gray-900 rounded-lg shadow-lg p-6 w-full max-w-lg relative h-[180vh] ">
+          <div
+          className="flex flex-row items-center justify-between border-b-2 border-gray-400 h-[5%]"
+          >
+            <h1 className="text-gray-50 text-base">Create Nurse</h1>
+            <button
+            onClick={() => setShowModal(false)}
+            className=" text-gray-50 text-base hover:text-red-600 "
+            >
+              ×
+            </button>
+          </div >
+          <NewNurse />
+        </div>
+      </div>
+    );
+  }
+  return null;
+};
 
     return (
         <div>
@@ -97,6 +129,12 @@ const Nurses = () => {
             </tbody>
           </table>
         </div>
+        <div className="flex justify-end items-center mx-2 my-2 ">
+          <button
+            className="flex justify-center items-center w-[150px] font-medium capitalize text-gray-700 flex border-1 border-gray-300 rounded-lg cursor-pointer py-2  "
+            type="button" onClick={handleClick}>New Nurse</button>
+        </div>
+        {displayShowModal()}
       </div>
     )
 }
