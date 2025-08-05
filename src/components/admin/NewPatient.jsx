@@ -2,18 +2,48 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { baseUrl } from "../../api/baseUrl";
 import useAuth from "../../hooks/UseAuth";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const NewPatient = () => {
   const { auth } = useAuth();
-  const url = `${baseUrl}patient`;
+  const url = baseUrl + patient;
+  const [loading, setLoading] = useState(false);
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
+  
+  const newPatient = async(data) => {
+    setLoading(true);
+    try {
+      const response = await axios.post(url, data, {
+        headers : {
+         "content-Type": "application/json",
+         
+        },
+        withCredentials: true
+      })
+      console.log(response.data);
+      toast.success("Patient added successfully");
+      reset();
+      setLoading(false);
+    }
+    catch (error) {
+      console.error("Error adding patient:", error);
+      toast.error("Failed to add patient");
+    }
+    finally {
+      setLoading(false);
+    }
+  }
   const handlePatient = (data) => {
-    console.log(data);
-  };
+    newPatient(data);
+  }
+
 
   return (
     <form
@@ -307,8 +337,9 @@ const NewPatient = () => {
 
       <div className="col-span-2 flex justify-center">
         <button 
+        disabled = {loading}
        className="w-[30%] border-2 border-gray-100 rounded-lg px-1 py-1 text-gray-50 "
-      type="submit">Add Patient</button>
+      type="submit">{loading ?" loading...": "Add Patient"}</button>
       </div>
     </form>
   );
