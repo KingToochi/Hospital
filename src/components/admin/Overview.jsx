@@ -3,13 +3,15 @@ import AuthContext from "../../context/AuthProvider";
 import {baseUrl} from "../../api/baseUrl"
 import axios from "axios"
 import NewPatient from "./NewPatient";
+import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Overview = () => {
     const {auth} = useContext(AuthContext);
     const url = baseUrl + "patient";
     const [patients, setPatients] = useState([]);
     const [loading, setLoading] = useState(false)
     const [showModal, setShowModal] = useState(false)
-
+    const Navigate = useNavigate();
     const getPatients = async() => {
       try{
         const response = await axios.get(url,{
@@ -29,6 +31,10 @@ const Overview = () => {
       getPatients();
     },[]
   )
+
+  const handleViewpatient = (id) => {
+    Navigate(`/admin/patient/${id}`);
+  }
 
     
 
@@ -103,7 +109,7 @@ const Overview = () => {
                   blood Type
                 </th>
                 <th scope="col" className="px-4 py-4 hidden md:flex border-t border-gray-100">
-                  {" "}
+                  Action
                 </th>
               </tr>
             </thead>
@@ -146,9 +152,30 @@ const Overview = () => {
                       </span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 hidden md:flex">
-                    <div className="flex justify-end gap-4">
-
+                  <td className="px-6 py-4 mt-4 hidden md:flex items-center  ">
+                    <div className="flex justify-end gap-4 items-center">
+                      <div className="flex items-center cursor-pointer">
+                        <FontAwesomeIcon 
+                        className="group text-gray-700 hover:text-blue-600"
+                        onClick={() => handleViewpatient(patient.id)}
+                        icon="fa-solid fa-eye" /> 
+                        <h2 className="hidden group-hover:block text-black text-sm">View</h2>
+                      </div>
+                        
+                       <div className="flex items-center cursor-pointer">
+                        <FontAwesomeIcon 
+                        className="group text-gray-700 hover:text-blue-600"
+                        onClick={() => handleViewpatient(patient.id)}
+                        icon="fa-solid fa-edit" /> 
+                        <h2 className="hidden group-hover:block text-black text-sm">update</h2>
+                      </div>
+                       <div className="flex items-center cursor-pointer">
+                        <FontAwesomeIcon 
+                        className="group text-gray-700 hover:text-blue-600"
+                        onClick={() => handleViewpatient(patient.id)}
+                        icon="fa-solid fa-trash" /> 
+                        <h2 className="hidden group-hover:block text-black text-sm">delete</h2>
+                      </div>
                     </div>
                   </td>
                 </tr>

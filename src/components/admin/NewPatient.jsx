@@ -5,11 +5,13 @@ import useAuth from "../../hooks/UseAuth";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import usePost from "../../hooks/usePost";
 
 const NewPatient = () => {
   const { auth } = useAuth();
-  const url = baseUrl + patient;
+  const url = `${baseUrl}patient`;
   const [loading, setLoading] = useState(false);
+  const post = usePost();
   const {
     register,
     handleSubmit,
@@ -20,17 +22,10 @@ const NewPatient = () => {
   const newPatient = async(data) => {
     setLoading(true);
     try {
-      const response = await axios.post(url, data, {
-        headers : {
-         "content-Type": "application/json",
-         
-        },
-        withCredentials: true
-      })
-      console.log(response.data);
+      const response = await post(url, data, auth.accessToken);
+      console.log(response?.data);
       toast.success("Patient added successfully");
       reset();
-      setLoading(false);
     }
     catch (error) {
       console.error("Error adding patient:", error);

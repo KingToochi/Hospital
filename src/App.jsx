@@ -21,6 +21,7 @@ import RequiredAuth from "./components/auth/RequiredAuth";
 import Doctors from "./components/admin/Doctor";
 import Nurses from "./components/admin/Nurses";
 import Appointment from "./components/admin/Appointment";
+import PatientDetails from "./components/admin/patient/PatientDetails";
 
 
 
@@ -44,6 +45,7 @@ function App() {
             <Route path="doctors" element={<Doctors/>} />
             <Route path="nurses" element={<Nurses/>} />
             <Route path="appointment" element={<Appointment/>} />
+            <Route path="patient/:id" element={<PatientDetails />} />
           </Route>
         </Route>
         
