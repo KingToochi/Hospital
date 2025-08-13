@@ -32,8 +32,8 @@ const Overview = () => {
     },[]
   )
 
-  const handleViewpatient = (id) => {
-    Navigate(`/admin/patient/${id}`);
+  const handleViewpatient = (_id) => {
+    Navigate(`/admin/patient/${_id}`);
   }
 
     
@@ -117,7 +117,7 @@ const Overview = () => {
             <tbody className="divide-y divide-gray-100 border-t border-gray-100">
               {patients.map((patient) => 
               
-                <tr className="hover:bg-gray-200 cursor-pointer" key={patient.id}>
+                <tr className="hover:bg-gray-200 cursor-pointer" key={patient._id}>
                   <th className="px-2 py-4 font-normal text-gray-900 text-center" >
                     <div className="text-sm">
                       <div className="font-medium text-gray-700">
@@ -157,7 +157,7 @@ const Overview = () => {
                       <div className="flex items-center cursor-pointer">
                         <FontAwesomeIcon 
                         className="group text-gray-700 hover:text-blue-600"
-                        onClick={() => handleViewpatient(patient.id)}
+                        onClick={() => handleViewpatient(patient._id)}
                         icon="fa-solid fa-eye" /> 
                         <h2 className="hidden group-hover:block text-black text-sm">View</h2>
                       </div>
@@ -165,14 +165,14 @@ const Overview = () => {
                        <div className="flex items-center cursor-pointer">
                         <FontAwesomeIcon 
                         className="group text-gray-700 hover:text-blue-600"
-                        onClick={() => handleViewpatient(patient.id)}
+                        onClick={() => handleViewpatient(patient._id)}
                         icon="fa-solid fa-edit" /> 
                         <h2 className="hidden group-hover:block text-black text-sm">update</h2>
                       </div>
                        <div className="flex items-center cursor-pointer">
                         <FontAwesomeIcon 
                         className="group text-gray-700 hover:text-blue-600"
-                        onClick={() => handleViewpatient(patient.id)}
+                        onClick={() => handleViewpatient(patient._id)}
                         icon="fa-solid fa-trash" /> 
                         <h2 className="hidden group-hover:block text-black text-sm">delete</h2>
                       </div>
