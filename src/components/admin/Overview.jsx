@@ -11,7 +11,7 @@ const Overview = () => {
     const [patients, setPatients] = useState([]);
     const [loading, setLoading] = useState(false)
     const [showModal, setShowModal] = useState(false)
-    const Navigate = useNavigate();
+    const navigate = useNavigate();
     const getPatients = async() => {
       try{
         const response = await axios.get(url,{
@@ -33,8 +33,12 @@ const Overview = () => {
   )
 
   const handleViewpatient = (id) => {
-    Navigate(`/admin/patient/${id}`);
+    navigate(`/admin/patient/${id}`);
   }
+	
+	const handleUpdatePatient = (patient) => {
+		
+	}
 
     
 
@@ -157,7 +161,7 @@ const Overview = () => {
                       <div className="flex items-center cursor-pointer">
                         <FontAwesomeIcon 
                         className="group text-gray-700 hover:text-blue-600"
-                        onClick={() => handleViewpatient(patient.id)}
+                        onClick={() => handleViewpatient(patient._id)}
                         icon="fa-solid fa-eye" /> 
                         <h2 className="hidden group-hover:block text-black text-sm">View</h2>
                       </div>
@@ -165,14 +169,14 @@ const Overview = () => {
                        <div className="flex items-center cursor-pointer">
                         <FontAwesomeIcon 
                         className="group text-gray-700 hover:text-blue-600"
-                        onClick={() => handleViewpatient(patient.id)}
+                        onClick={() => handleUpdatePatient(patient)}
                         icon="fa-solid fa-edit" /> 
                         <h2 className="hidden group-hover:block text-black text-sm">update</h2>
                       </div>
                        <div className="flex items-center cursor-pointer">
                         <FontAwesomeIcon 
                         className="group text-gray-700 hover:text-blue-600"
-                        onClick={() => handleViewpatient(patient.id)}
+                        onClick={() => handleViewpatient(patient._id)}
                         icon="fa-solid fa-trash" /> 
                         <h2 className="hidden group-hover:block text-black text-sm">delete</h2>
                       </div>

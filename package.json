@@ -15,6 +15,8 @@
     "@fortawesome/free-regular-svg-icons": "^7.0.0",
     "@fortawesome/free-solid-svg-icons": "^7.0.0",
     "@fortawesome/react-fontawesome": "^0.2.3",
+    "@mui/icons-material": "^7.3.1",
+    "@mui/material": "^7.3.1",
     "@tailwindcss/vite": "^4.1.1",
     "axios": "^1.9.0",
     "font-awesome": "^4.7.0",
@@ -25,7 +27,8 @@
     "react-toastify": "^11.0.5",
     "rechart": "^0.0.1",
     "recharts": "^3.0.2",
-    "tailwindcss": "^4.1.1"
+    "tailwindcss": "^4.1.1",
+    "use-query": "^1.0.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

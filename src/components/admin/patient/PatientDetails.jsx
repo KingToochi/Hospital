@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import AuthContext from "../../../context/AuthProvider";
-import { baseUrl } from "../../../api/baseurl";
-import axios from "axios";
+import { baseUrl } from "../../../api/baseUrl";
+import axios from "../../../api/axios";
 
 
 const  PatientDetails= () => {
@@ -22,7 +22,7 @@ const  PatientDetails= () => {
             console.log(response.data);
         } catch (error) {
             console.error("Error fetching patient details:", error);
-        }t
+        }
     }
 
     useEffect(() => {
