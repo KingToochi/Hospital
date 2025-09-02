@@ -1,7 +1,7 @@
 import logo from "../../assets/images/logo.jpg";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { baseUrl } from "../../api/baseurl";
+import { baseUrl } from "../../api/baseUrl";
 import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
