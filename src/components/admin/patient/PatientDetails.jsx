@@ -24,7 +24,7 @@ const  PatientDetails= () => {
             console.error("Error fetching patient details:", error);
         }
     }
-  };
+
 
   useEffect(() => {
     getPatientDetails();

@@ -1,11 +1,11 @@
-import useFetch from "../../../hooks/useFetch";
+// import useFetch from "../../../hooks/useFetch";
 import useAuth from "../../../hooks/UseAuth";
-import baseUrl from "../../shared/baseUrl";
+import {baseUrl} from "../../../api/baseUrl";
 import Modal from "@mui/material/Modal";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import useUpdate from "../../../hooks/useUpdate";
-import { useQuery, useMutation, useQueryClient } from "react-query";
+import useUpdate from "../../../hooks/UseUpdate";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
 
@@ -32,17 +32,30 @@ const UpdatePatientModal = ({ open, handleClose, patient }) => {
 		formState: { errors },
 	} = useForm();
 
-	useEffect(() => {
-		if (patient) {
-			Object.entries(patient).forEach(([key, value]) => {
-				if (key == "dateOfBirth") {
+	// useEffect(() => {
+	// 	if (patient) {
+	// 		Object.entries(patient).forEach(([key, value]) => {
+	// 			if (key == "dateOfBirth") {
+	// 				setValue(key, value.slice(0, 10));
+	// 			} else {
+	// 				setValue(key, value);
+	// 			}
+	// 		});
+	// 	}
+	// }, [patient, setValue]);
+		useEffect(() => {
+	if (patient && typeof patient === "object") {
+		Object.entries(patient).forEach(([key, value]) => {
+			if (value !== undefined && value !== null) {
+				if (key === "dateOfBirth" && typeof value === "string") {
 					setValue(key, value.slice(0, 10));
 				} else {
 					setValue(key, value);
 				}
-			});
-		}
-	}, [patient, setValue]);
+			}
+		});
+	}
+}, [patient, setValue]);
 
 	const updatePatient = async (data) => {
 		const response = await update(url, data, auth?.accessToken);
