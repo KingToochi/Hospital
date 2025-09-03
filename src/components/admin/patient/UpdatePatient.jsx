@@ -4,7 +4,7 @@ import {baseUrl} from "../../../api/baseUrl";
 import Modal from "@mui/material/Modal";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import useUpdate from "../../../hooks/UseUpdate";
+import useUpdate from "../../../hooks/useUpdate";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
