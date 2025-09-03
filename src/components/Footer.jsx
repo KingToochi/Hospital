@@ -11,7 +11,7 @@ const Footer = () => {
             <h1 > 
                 © {new Date().getFullYear()} Kings's Med.
             </h1>
-            <div className='flex gap-4  w-[50%] justify-between'>
+            <div className='hidden sm:flex gap-4  w-[50%] justify-between'>
 
                 <Link to='/'>
                    Eye 

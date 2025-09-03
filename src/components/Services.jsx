@@ -62,7 +62,7 @@ const ServiceList = () => {
   };
 
   return (
-    <div className="w-full px-2 py-2 bg-gray-200">
+    <div className="w-full h-auto px-2 py-2 bg-gray-200">
       {/* Mobile: show one card */}
       <div className="md:hidden">
         <div className="text-center border-2 border-gray-600 rounded-lg h-auto px-2 py-4">
@@ -77,7 +77,7 @@ const ServiceList = () => {
             {listOfServices[currentIndex].linkText}
           </Link>
         </div>
-        <div className="w-full pr-4 absolute top-[34vh] flex justify-between text-2xl">
+        <div className="w-full pr-4 absolute top-[60vh] sm:top-[50%] flex justify-between text-2xl">
           <button type="button" onClick={handlePrev}>
             <FontAwesomeIcon icon={["fas", "angle-left"]} />
           </button>

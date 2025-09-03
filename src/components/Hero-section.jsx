@@ -8,14 +8,14 @@ const Hero_section = () => {
   return (
     <section className="w-full flex flex-col ">
       <div
-        className="w-full h-[20vh] flex flex-row
+        className="w-full h-[40vh] flex flex-row
             lg:h-[80vh]
             "
       >
         <img className="w-full relatiive" src={image} alt="doctor's image" />
         <div
-          className="w-auto text-base font-bold text-gray-900 flex flex-col items-center justify-centerbg-blue-300 absolute top-[15%] left-[5%]
-                lg:top-[40%] lg:left-[10%]
+          className="w-auto px-2 py-4 flex flex-col md:text-base text-sm font-bold text-gray-700 flex flex-col items-center gap-2 absolute top-[15%] sm:left-[5%]
+                lg:top-[40%] lg:left-[10%] text-center
                 "
         >
           <h1 className="">Health care </h1>
@@ -26,7 +26,7 @@ const Hero_section = () => {
           </p>
           <Link
             to="/"
-            className="bg-blue-300 w-[22vw] text-center border-2 rounded-lg"
+            className="bg-blue-300 w-auto px-2 text-center border-2 rounded-lg"
           >
             Check Our Services
           </Link>

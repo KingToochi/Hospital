@@ -1,14 +1,16 @@
  import Navigation from "./Navigation";
  import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const Header = () => {
+ import { useState } from "react";
+ const Header = () => {
+    const [displayNav, setDisplayNav] = useState(false)
     return ( 
         <header 
-        className=" w-full h-[8vh] 
+        className=" w-full h-auto 
         md:h-[10vh]
         lg:h-[18vh] 
         " >
             <div 
-            className="h-[50%] w-full flex items-center justify center gap-6 bg-blue-300
+            className="auto hidden md:h-[50%] w-full md:flex items-center justify center gap-6 bg-blue-300
             
             ">
                 <div className="w-[30%] h-full  flex justify-center gap-2 items-center "> 
