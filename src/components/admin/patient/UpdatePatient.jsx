@@ -15,7 +15,7 @@ const UpdatePatientModal = ({ open, handleClose, patient }) => {
 	//const fetch = useFetch();
 	const { auth } = useAuth();
 	const url = `${baseUrl}patient`;
-	const queryClient = useQueryClient();
+	// const queryClient = useQueryClient();
 	// const [patient, setPatient] = useState({});
 	//const [isLoading, setIsLoading] = useState(true)
 
@@ -63,14 +63,14 @@ const UpdatePatientModal = ({ open, handleClose, patient }) => {
 		return response.data;
 	};
 
-	const { mutate } = useMutation(updatePatient, {
-		onSuccess: () => {
-			queryClient.invalidateQueries("patients");
-			reset({});
-			handleClose();
-			toast.success("Patient Updated Successfully");
-		},
-	});
+	// const { mutate } = useMutation(updatePatient, {
+	// 	onSuccess: () => {
+	// 		queryClient.invalidateQueries("patients");
+	// 		reset({});
+	// 		handleClose();
+	// 		toast.success("Patient Updated Successfully");
+	// 	},
+	// });
 
 	const handlePatientCreate = (patient) => {
 		mutate(patient);
