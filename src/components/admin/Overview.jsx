@@ -69,149 +69,106 @@ const Overview = () => {
   };
 
   return (
-    <div>
-      <h1 className="text-center font-medium capitalize text-gray-700">
+    <div
+    className="w-full flex flex-col"
+    >
+      <div
+      className="flex w-full justify-between px-2 my-2"
+      >
+        <h1 
+        className="w-1/2 text-xl font-bold text-gray-700 
+        lg:text-center
+        "
+        >
         Patients
       </h1>
-      <div className="flex justify-end items-center mx-2 my-2 ">
         <button
-          className="flex justify-center items-center w-[150px] font-medium capitalize text-gray-700 flex border-1 border-gray-300 rounded-lg cursor-pointer py-2  "
+        className="w-1/3 border border-gray-900 text-gray-400 hover:text-gray-700 rounded-lg mx-2
+        sm:w-1/4
+        lg:w-[10%]
+        "
           type="button"
           onClick={handleClick}
         >
           New Patient
         </button>
       </div>
+  <div className="w-full overflow-x-auto">
+  <table className="min-w-full border border-gray-200">
+    <thead className="bg-gray-400 text-left">
+      <tr>
+        <th scope="col" className="hidden lg:table-cell px-4 py-2">ID</th>
+        <th scope="col" className="px-4 py-2">Name</th>
+        <th scope="col" className="hidden lg:table-cell px-4 py-2">State</th>
+        <th scope="col" className="hidden md:table-cell px-4 py-2">Phone Number</th>
+        <th scope="col" className="px-4 py-2">Gender</th>
+        <th scope="col" className="hidden lg:table-cell px-4 py-2">Blood Type</th>
+        <th scope="col" className="px-4 py-2">Action</th>
+      </tr>
+    </thead>
 
-      <div className="border rounded-lg border-gray-900 dark:border-gray-400 h-auto mb-4">
-        <table className="w-full border-collapse bg-white text-left text-gray-900">
-          <thead className="bg-gray-300">
-            <tr>
-              <th
-                scope="col"
-                className="px-4 py-4 font-medium text-center text-gray-900"
-              >
-                ID
-              </th>
-              <th
-                scope="col"
-                className="px-4 py-4 font-medium text-center text-gray-900"
-              >
-                Name
-              </th>
-              <th
-                scope="col"
-                className="px-4 py-4 font-medium text-center text-gray-900"
-              >
-                State
-              </th>
-              <th
-                scope="col"
-                className="px-4 py-4 font-medium text-center text-gray-900"
-              >
-                Phone Number
-              </th>
-              <th
-                scope="col"
-                className="px-4 py-4 font-medium text-center text-gray-900"
-              >
-                Gender
-              </th>
-              <th
-                scope="col"
-                className="px-4 py-4 font-medium text-center text-gray-900"
-              >
-                blood Type
-              </th>
-              <th
-                scope="col"
-                className="px-4 py-4 hidden md:flex border-t border-gray-100"
-              >
-                Action
-              </th>
-            </tr>
-          </thead>
+    <tbody className="divide-y divide-gray-200">
+      {patients.map((patient) => (
+        <tr key={patient._id}>
+          {/* ID - only visible on large screens */}
+          <td className="hidden lg:table-cell px-4 py-2">{patient.patientNumber}</td>
 
-          <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-            {patients.map((patient) => (
-              <tr
-                className="hover:bg-gray-200 cursor-pointer"
-                key={patient._id}
-              >
-                <th className="px-2 py-4 font-normal text-gray-900 text-center">
-                  <div className="text-sm">
-                    <div className="font-medium text-gray-700">
-                      {patient.patientNumber}
-                    </div>
-                  </div>
-                </th>
+          {/* Name - always visible */}
+          <td className="px-4 py-2">
+            {`${patient.firstname} ${patient.lastname}`}
+            <div className="hidden md:block text-sm text-gray-500">{patient.email}</div>
+          </td>
 
-                <th className="flex gap-3 px-2 py-4 font-normal text-gray-900 text-center justify-center">
-                  <div className="text-sm text-center">
-                    <div className="font-medium capitalize text-gray-700 text-center">
-                      {`${patient.firstname} ${patient.lastname}`}
-                    </div>
-                    <div className="text-gray-400">{patient.email}</div>
-                  </div>
-                </th>
-                <td className="px-2 py-4 text-center">
-                  <span className="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold font-green-600">
-                    <span className="h-1.5 w-2 rounded-full bg-green-600"></span>
-                    {patient.status}
-                  </span>
-                </td>
-                <td className="px-2 py-4 text-center">{patient.phone}</td>
-                <td className="px-2 py-4 text-center">{patient.gender}</td>
-                <td className="px-2 py-4 text-center">
-                  <div className="flex gap-2">
-                    <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
-                      {patient.bloodGroup}
-                    </span>
-                    <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600">
-                      {patient.genotype}
-                    </span>
-                  </div>
-                </td>
-                <td className="px-6 py-4 mt-4 hidden md:flex items-center  ">
-                  <div className="flex justify-end gap-4 items-center">
-                    <div className="flex items-center cursor-pointer">
-                      <FontAwesomeIcon
-                        className="group text-gray-700 hover:text-blue-600"
-                        onClick={() => handleViewpatient(patient._id)}
-                        icon="fa-solid fa-eye"
-                      />
-                      <h2 className="hidden group-hover:block text-black text-sm">
-                        View
-                      </h2>
-                    </div>
+          {/* State - large screens only */}
+          <td className="hidden lg:table-cell px-4 py-2">{patient.status}</td>
 
-                    <div className="flex items-center cursor-pointer">
-                      <FontAwesomeIcon
-                        className="group text-gray-700 hover:text-blue-600"
-                        onClick={() => handlePantientModal(patient)}
-                        icon="fa-solid fa-edit"
-                      />
-                      <h2 className="hidden group-hover:block text-black text-sm">
-                        update
-                      </h2>
-                    </div>
-                    <div className="flex items-center cursor-pointer">
-                      <FontAwesomeIcon
-                        className="group text-gray-700 hover:text-blue-600"
-                        onClick={() => handleViewpatient(patient._id)}
-                        icon="fa-solid fa-trash"
-                      />
-                      <h2 className="hidden group-hover:block text-black text-sm">
-                        delete
-                      </h2>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          {/* Phone Number - visible from md and above */}
+          <td className="hidden md:table-cell px-4 py-2">{patient.phone}</td>
+
+          {/* Gender - always visible */}
+          <td className="px-4 py-2">{patient.gender}</td>
+
+          {/* Blood Type - large screens only */}
+          <td className="hidden lg:table-cell px-4 py-2">{patient.genotype}</td>
+
+          {/* Action - always visible */}
+          <td className="px-4 py-2">
+            <div className="flex space-x-4">
+              <div className="flex items-center cursor-pointer group">
+                <FontAwesomeIcon
+                  className="text-gray-700 hover:text-blue-600"
+                  onClick={() => handleViewpatient(patient._id)}
+                  icon="fa-solid fa-eye"
+                />
+                <span className="hidden group-hover:inline text-sm ml-1">View</span>
+              </div>
+
+              <div className="flex items-center cursor-pointer group">
+                <FontAwesomeIcon
+                  className="text-gray-700 hover:text-blue-600"
+                  onClick={() => handlePantientModal(patient)}
+                  icon="fa-solid fa-edit"
+                />
+                <span className="hidden group-hover:inline text-sm ml-1">Update</span>
+              </div>
+
+              <div className="flex items-center cursor-pointer group">
+                <FontAwesomeIcon
+                  className="text-gray-700 hover:text-blue-600"
+                  onClick={() => handleDelete(patient._id)}
+                  icon="fa-solid fa-trash"
+                />
+                <span className="hidden group-hover:inline text-sm ml-1">Delete</span>
+              </div>
+            </div>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+
       {displayShowModal()}
       {/* <UpdatePatientModal open={showModal} handleClose={setShowModal} patient={currentPatient} /> */}
       {showModal && currentPatient && Object.keys(currentPatient).length > 0 && (

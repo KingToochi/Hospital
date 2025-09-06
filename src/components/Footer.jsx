@@ -5,7 +5,7 @@ const Footer = () => {
     return ( 
         
         <div
-        className='flex items-center text-base font-semibold text-gray-700 justify-between px-4 py-2'
+        className='w-full flex items-center text-base font-semibold text-gray-700 justify-between px-4 py-2 fixed bottom-0 bg-gray-300 z-50'
         >
             <img className='w-10 h-10 rounded-[50%]' src={logo} alt='logo' />
             <h1 > 

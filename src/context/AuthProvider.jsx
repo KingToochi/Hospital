@@ -1,4 +1,4 @@
-// Got it — this code is creating a React Context to share authentication data (like user login state) across your app 
+// — this code is creating a React Context to share authentication data (like user login state) across your app 
 // without having to pass props down manually.
 
 // Importing React's createContext (to create a context object) 
@@ -8,6 +8,9 @@ import { createContext, useState } from "react";
 // Create a new context for authentication
 // The empty object {} is the default value
 const AuthContext = createContext({});
+// Export the context so it can be used with useContext in other components
+export default AuthContext;
+
 
 // Create a Context Provider component that will wrap parts of the app
 // and give them access to auth-related state
@@ -24,5 +27,3 @@ export const AuthProvider = ({ children }) => {
     );
 };
 
-// Export the context so it can be used with useContext in other components
-export default AuthContext;

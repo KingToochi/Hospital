@@ -27,7 +27,7 @@ import PatientDetails from "./components/admin/patient/PatientDetails";
 
 function App() {
   return (
-    <div className="overflow-x-hidden"> 
+    <div> 
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
